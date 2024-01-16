@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import {useAuthStore} from '@/store/auth'
+import {useAuthStore} from '@/store/auth.ts'
 
 import AdminLayout from '@/layout/AdminLayout.vue'
 import BlogLayout from '@/layout/BlogLayout.vue'
@@ -77,7 +77,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
-  console.log(authStore.isAuthenticated)
+
   if (to.matched.some(record => record.meta.needAuth) && !authStore.isAuthenticated) {
     next({ name: 'admin.login' })
   } else {
